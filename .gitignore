@@ -1,0 +1,10 @@
+.vim/.netrwhist
+.vim/plugged
+.ptpython/history
+*.pyc
+__pycache__/*
+.ipython/profile_default/history.sqlite
+.ipython/profile_default/startup/README
+*.DS_Store
+pythonx
+.mypy_cache

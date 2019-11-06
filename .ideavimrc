@@ -1,0 +1,18 @@
+" loren's .ideavimrc "
+
+" m is for macro
+nnoremap m @q
+
+" comma is our leader
+let mapleader = ","
+
+" code nav
+map <leader>g :action GotoDeclaration<CR>
+map <leader>i :action GotoImplementation<CR>
+
+" editor nav
+map <leader>t :action ActivateTerminalToolWindow<CR>
+
+" plugin emulation
+set surround
+set commentary

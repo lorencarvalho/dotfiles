@@ -1,0 +1,4 @@
+autoreload = true
+confirm_exit = f
+theme = tomorrow
+editing_mode = emacs
