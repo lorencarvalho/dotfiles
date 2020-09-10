@@ -146,7 +146,5 @@
     name = Loren Carvalho
 [web]
 	browser = open
-[mergetool "fugitive"]
-	cmd = vim -f -c \"Gvdiff\" \"$MERGED\"
 [mergetool]
 	keepBackup = false

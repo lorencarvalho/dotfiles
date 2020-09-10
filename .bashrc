@@ -35,12 +35,13 @@ alias grep='grep --color=auto '
 alias h='history'
 alias ls="exa -I '*.pyc'"
 alias q='sudo su -'
-alias s='\ssh -i ~/.ssh/id_rsa lcarvalh-ld1'
+alias s='ssh -A lcarvalh-ld2.linkedin.biz'
 alias t='tmux -CC'
 alias ta='tmux -CC attach'
 alias td='tmux -CC detach'
 alias vi="nvim"
 alias vim="nvim"
+alias hiss="PYTHONBREAKPOINT=ipdb.set_trace hiss"
 
 # completion
 [ -f /etc/profile.d/bash-completion ] && source /etc/profile.d/bash-completion
@@ -92,12 +93,14 @@ if [ -f $HOME/.cargo/env ]; then
 fi
 
 # fzf
-source "$HOME/.fzf/shell/key-bindings.bash"
+#source "$HOME/.fzf/shell/key-bindings.bash"
 export FZF_DEFAULT_OPTS="--color=bg+:'#2e2e2f'"
 
 # path
 _PATH=$PATH
 PATH=""
+PATH+="/bin"
+PATH+=":/export/apps/python/3.8/bin"
 PATH+=":/export/apps/python/3.7/bin"
 PATH+=":/export/apps/python/3.6/bin"
 PATH+=":/export/apps/python/3.5/bin"
@@ -114,6 +117,8 @@ PATH+=":/usr/local/opt/coreutils/bin"
 PATH+=":/export/content/granular/bin"
 PATH+=":/export/content/linkedin/bin"
 PATH+=":/usr/local/linkedin/bin"
+PATH+=":/usr/local/bin"
+PATH+=":/usr/local/go/bin"
 PATH+=":$_PATH"
 export PATH
 
@@ -183,3 +188,5 @@ fi
 
 export VOLTA_HOME="$HOME/.volta"
 [ -s "$VOLTA_HOME/load.sh" ] && . "$VOLTA_HOME/load.sh"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
