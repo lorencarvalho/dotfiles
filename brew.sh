@@ -13,17 +13,17 @@ brew install coreutils moreutils findutils jq tree mas neovim wget fish exa fd r
 brew tap homebrew/cask
 
 ## Apps I use
-brew cask install 1password
-brew cask install google-chrome
-brew cask install iterm2
-brew cask install slack
-brew cask install spotify
-brew cask install visual-studio-code
-brew cask install docker
-brew cask install vlc
-brew cask install istat-menus
-brew cask install spectacle
-brew cask install rectangle
+brew install --cask 1password
+brew install --cask  google-chrome
+brew install --cask  iterm2
+brew install --cask  slack
+brew install --cask  spotify
+brew install --cask  visual-studio-code
+brew install --cask docker
+brew install --cask vlc
+brew install --cask istat-menus
+brew install --cask spectacle
+brew install --cask rectangle
 
 mas install 937984704 # Amphetamine
 
