@@ -9,7 +9,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " easier paste mode
-set pastetoggle=<F3>
+set pastetoggle=<F2>
 
 " i like mice
 set mouse=a

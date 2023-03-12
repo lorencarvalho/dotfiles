@@ -1,4 +1,4 @@
-# sixninetynine's bashrc
+# loren's bashrc
 
 # source global definitions
 if [ -f /etc/bashrc ]; then
@@ -34,18 +34,21 @@ alias g='grep'
 alias grep='grep --color=auto '
 alias h='history'
 alias ls="exa -I '*.pyc'"
+alias ll="exa -lah"
 alias q='sudo su -'
-alias s='ssh -A lcarvalh-ld2.linkedin.biz'
+alias s='ssh -A lcarvalh-ld1.linkedin.biz'
 alias t='tmux -CC'
 alias ta='tmux -CC attach'
 alias td='tmux -CC detach'
 alias vi="nvim"
 alias vim="nvim"
 alias hiss="PYTHONBREAKPOINT=ipdb.set_trace hiss"
+alias kubectl="/usr/local/bin/kubectl"
 
 # completion
 [ -f /etc/profile.d/bash-completion ] && source /etc/profile.d/bash-completion
 [ -f /etc/bash_completion ] && source /etc/bash_completion
+[ -f /usr/local/etc/profile.d/bash_completion.sh ] && source /usr/local/etc/profile.d/bash_completion.sh
 [ -f ~/.git-completion.bash ] && source ~/.git-completion.bash
 [ -f ~/.fzf/shell/completion.bash ] && source ~/.fzf/shell/completion.bash
 
@@ -56,6 +59,9 @@ if [ -f /export/content/linkedin/etc/bash ]; then
     done
 fi
 
+source <(kubectl completion bash)
+alias k="/usr/local/bin/kubectl"
+complete -F __start_kubectl k
 complete 2>&1 >/dev/null
 
 if [ $? = 0 ]; then
@@ -100,6 +106,7 @@ export FZF_DEFAULT_OPTS="--color=bg+:'#2e2e2f'"
 _PATH=$PATH
 PATH=""
 PATH+="/bin"
+PATH+=":/export/apps/python/3.9/bin"
 PATH+=":/export/apps/python/3.8/bin"
 PATH+=":/export/apps/python/3.7/bin"
 PATH+=":/export/apps/python/3.6/bin"
@@ -112,42 +119,15 @@ PATH+=":$HOME/bin"
 PATH+=":$HOME/.fzf/bin"
 PATH+=":$HOME/.yarn/bin"
 PATH+=":$HOME/.volta/bin"
+PATH+=":$HOME/.kubectl-plugins"
 PATH+=":/usr/local/opt/coreutils/libexec/gnubin"
 PATH+=":/usr/local/opt/coreutils/bin"
 PATH+=":/export/content/granular/bin"
 PATH+=":/export/content/linkedin/bin"
 PATH+=":/usr/local/linkedin/bin"
 PATH+=":/usr/local/bin"
-PATH+=":/usr/local/go/bin"
 PATH+=":$_PATH"
 export PATH
-
-# functions
-allpytest() {
-    app=`echo $PWD | awk -F/ '{print $NF}'`
-    for venv in ../build/$app/venv*;
-        do
-            deactivate 2> /dev/null
-            echo -en "\n\nRUNNING PY.TEST WITH" $venv "\n\n"
-            source $venv/bin/activate
-            py.test test
-            deactivate
-        done
-}
-
-ps1_git_branch() {
-    ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-    git diff --quiet --ignore-submodules=dirty 2>/dev/null >&2 && dirty=" ✓" || dirty=" ±"
-    echo " git:${ref#refs/heads/}${dirty}"
-}
-
-title() {
-  if [ -z $TMUX ] ; then
-     printf "\e]1;$@\a"
-  else
-     tmux rename-window $@
-  fi
-}
 
 vv() {
   cdd
@@ -155,25 +135,11 @@ vv() {
   . venv/bin/activate
 }
 
-zipedit(){
-    echo "Usage: zipedit archive.zip folder/file.txt"
-    curdir=$(pwd)
-    unzip "$1" "$2" -d /tmp
-    cd /tmp
-    vi "$2" && zip --update "$curdir/$1"  "$2"
-    # remove this line to just keep overwriting files in /tmp
-    rm -f "$2" # or remove -f if you want to confirm
-    cd "$curdir"
-}
-
 # colors
 export LSOPTIONS='--color'
 export CLICOLOR=1
 export PROMPT_DIRTRIM=2
 export LESS='GeFRX'
-
-# shiv
-# export SHIV_COMPILE_PYC="false"
 
 [ -f ~/.colors ] && source ~/.colors
 
@@ -185,8 +151,3 @@ if [[ $- == *i* ]];
   then
     PS1="\[$NORMAL\]\[$BOLD\]\[$GREEN\]\${hn} \[$NORMAL\]\[$WHITE\]\w\[$BOLD\]\$(ps1_git_branch) \[$NORMAL\]$ "
 fi
-
-export VOLTA_HOME="$HOME/.volta"
-[ -s "$VOLTA_HOME/load.sh" ] && . "$VOLTA_HOME/load.sh"
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash

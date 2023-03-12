@@ -10,6 +10,7 @@ let mapleader = ","
 map <leader>g :action GotoDeclaration<CR>
 map <leader>i :action GotoImplementation<CR>
 map <leader>z :action ShowUsages<CR>
+map <leader>r :action RenameElement<CR>
 
 " editor nav
 map <leader>t :action ActivateTerminalToolWindow<CR>

@@ -141,6 +141,7 @@
     # installations. To use `simple` instead, add this to your `~/.extra` file:
     # `git config --global push.default simple`. See http://git.io/mMah-w.
     default = matching
+	autoSetupRemote = true
 [user]
     email = lcarvalho@linkedin.com
     name = Loren Carvalho
