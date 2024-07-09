@@ -1,4 +1,4 @@
-#li loren carvalho | 2023
+# loren carvalho | 2024
 
 # source global definitions
 if [ -f /etc/bashrc ]; then
@@ -32,7 +32,6 @@ alias ls="exa -I '*.pyc'"
 alias ll="exa -lah"
 alias vi="nvim"
 alias vim="nvim"
-alias dotfiles='GIT_SSH_COMMAND="ssh -F ~/.ssh/config.custom" git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # history
 [[ -d ~/.history ]] && chmod 0700 ~/.history || mkdir -m 0700 ~/.history
@@ -151,7 +150,7 @@ parse_git_branch() {
   fi
 }
 
-_HN=`uname -a | cut -d ' ' -f 1 | awk '{print tolower($0)}'`
+_HN=$(uname -a | cut -d ' ' -f 1 | awk '{print tolower($0)}')
 if [[ $- == *i* ]]; then
   PS1="\[$NORMAL\]\[$BOLD\]\[$GREEN\]\${_HN} \[$NORMAL\]\[$WHITE\]\w\[$BOLD\] \$(parse_git_branch)\[$NORMAL\]$ "
 fi
