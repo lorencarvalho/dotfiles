@@ -32,6 +32,7 @@ alias ls="exa -I '*.pyc'"
 alias ll="exa -lah"
 alias vi="nvim"
 alias vim="nvim"
+alias s="ssh -A lcarvalh-ld77.linkedin.biz"
 
 # history
 [[ -d ~/.history ]] && chmod 0700 ~/.history || mkdir -m 0700 ~/.history
