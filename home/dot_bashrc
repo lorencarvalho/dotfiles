@@ -68,6 +68,9 @@ export FZF_DEFAULT_OPTS="--color=bg+:'#2e2e2f'"
 # rust
 [[ -f ~/.cargo/env ]] && source ~/.cargo/env
 
+# rye
+[[ -f ~/.rye/env ]] && source ~/.rye/env
+
 # ssh
 [[ `uname` != 'Darwin' ]] && eval `keychain --eval id_rsa`
 
@@ -85,22 +88,20 @@ _PATH=$PATH
 PATH=""
 PATH+="/opt/homebrew/bin"
 PATH+=":/bin"
+PATH+=":/export/apps/python/3.12/bin"
+PATH+=":/export/apps/python/3.11/bin"
+PATH+=":/export/apps/python/3.10/bin"
 PATH+=":/export/apps/python/3.9/bin"
-PATH+=":/export/apps/python/3.8/bin"
-PATH+=":/export/apps/python/3.7/bin"
-PATH+=":/export/apps/python/3.6/bin"
-PATH+=":/export/apps/python/3.5/bin"
-PATH+=":/export/apps/python/2.7/bin"
 PATH+=":/export/apps/xtools/bin"
 PATH+=":/export/apps/mysql/5.7/bin"
+PATH+=":$HOME/bin"
 PATH+=":$HOME/.cargo/bin"
 PATH+=":$HOME/.local/bin"
-PATH+=":$HOME/bin"
 PATH+=":$HOME/.fzf/bin"
 PATH+=":$HOME/.yarn/bin"
 PATH+=":$HOME/.volta/bin"
 PATH+=":$HOME/.kubectl-plugins"
-PATH+=":$HOME/.krew/bin/"
+PATH+=":$HOME/.krew/bin"
 PATH+=":/usr/local/opt/coreutils/libexec/gnubin"
 PATH+=":/usr/local/opt/coreutils/bin"
 PATH+=":/export/content/granular/bin"
