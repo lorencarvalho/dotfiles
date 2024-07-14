@@ -15,12 +15,8 @@ require("options")
 require("colors")
 
 -- plugins
-require("nvim-tree").setup()
-require('lualine').setup({
-    options = {
-        theme = 'vscode'
-    }
-})
+-- additional plugin configuration
+require("config")
 
 -- my keymaps
 require("keymaps")

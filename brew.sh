@@ -7,7 +7,7 @@ brew update
 brew upgrade
 
 # Basics
-brew install coreutils moreutils findutils jq tree mas neovim wget fish exa fd ripgrep gh kubectl azure-cli fzf
+brew install coreutils moreutils findutils jq tree mas neovim wget fish exa fd ripgrep gh kubectl azure-cli fzf universal-ctags
 
 # Installs Casks
 brew tap homebrew/cask
