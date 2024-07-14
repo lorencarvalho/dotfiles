@@ -14,7 +14,6 @@ require("options")
 -- colors
 require("colors")
 
--- plugins
 -- additional plugin configuration
 require("config")
 

@@ -4,7 +4,7 @@ local ts = require('telescope.builtin')
 -- browse buffers
 keymap.set("n", "<leader>b", function()
     ts.buffers({sort_mru=true,ignore_current_buffer=true})
-end) 
+end)
 
 -- pane nav
 keymap.set("n", "<leader>h", "<C-w>h", { noremap = true, silent = true })
@@ -21,6 +21,9 @@ keymap.set("n", "<leader>ft", ts.treesitter, {})
 
 -- map F1 to toggle NvimTree
 keymap.set("n", "<F1>", "<cmd>NvimTreeToggle<CR>", { noremap = true, silent = true })
+
+-- map F2 to enable Vista
+keymap.set("n", "<F2>", "<cmd>Vista!!<CR>", { noremap = true, silent = true })
 
 -- clear search highlights
 keymap.set("n", "<leader>nh", "<cmd>nohl<CR>", { desc = "Clear search highlights" })
