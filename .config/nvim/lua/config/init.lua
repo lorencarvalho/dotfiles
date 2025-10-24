@@ -27,7 +27,15 @@ local config_files = vim.tbl_filter(function(filename)
     return is_lua_module and not is_this_file
 end, scandir(module_directory))
 
+-- Load lazy first
+if vim.tbl_contains(config_files, "lazy.lua") then
+    require("config.lazy")
+end
+
+-- Load all other config files except lazy
 for _, filename in ipairs(config_files) do
     local config_module = string.match(filename, "(.+).lua$")
-    require("config." .. config_module)
+    if config_module ~= "lazy" then
+        require("config." .. config_module)
+    end
 end
