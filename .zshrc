@@ -5,11 +5,6 @@ if [ -f /etc/zshrc ]; then
     . /etc/zshrc
 fi
 
-# source homebrew site functions
-if [ -d /opt/homebrew/share/zsh/site-functions ]; then
-    fpath+=("/opt/homebrew/share/zsh/site-functions")
-fi
-
 # home / end / delete
 bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[F"   end-of-line
@@ -84,6 +79,12 @@ export FZF_DEFAULT_OPTS="--color=bg+:'#2e2e2f'"
 # ssh
 [[ `uname` != 'Darwin' ]] && eval `keychain --eval id_rsa`
 
+# sdkman
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh" && export SDKMAN_DIR="$HOME/.sdkman"
+
+# iterm2 shell integ
+[[ -s "${HOME}/.iterm2_shell_integration.zsh" ]] && source "${HOME}/.iterm2_shell_integration.zsh"
+
 # java home
 if [[ `uname` == 'Darwin' ]]; then
     if [[ -z "$JAVA_HOME" ]]; then
@@ -102,24 +103,15 @@ _PATH=$PATH
 PATH=""
 PATH+="/opt/homebrew/bin"
 PATH+=":/bin"
-PATH+=":/export/apps/python/3.12/bin"
-PATH+=":/export/apps/python/3.11/bin"
-PATH+=":/export/apps/python/3.10/bin"
-PATH+=":/export/apps/python/3.9/bin"
-PATH+=":/export/apps/xtools/bin"
 PATH+=":$HOME/bin"
 PATH+=":$HOME/.cargo/bin"
 PATH+=":$HOME/.local/bin"
 PATH+=":$HOME/.fzf/bin"
 PATH+=":$HOME/.yarn/bin"
-PATH+=":$HOME/.volta/bin"
 PATH+=":$HOME/.kubectl-plugins"
 PATH+=":$HOME/.krew/bin"
 PATH+=":/usr/local/opt/coreutils/libexec/gnubin"
 PATH+=":/usr/local/opt/coreutils/bin"
-PATH+=":/export/content/granular/bin"
-PATH+=":/export/content/linkedin/bin"
-PATH+=":/usr/local/linkedin/bin"
 PATH+=":/usr/local/bin"
 PATH+=":$_PATH"
 export PATH
@@ -128,6 +120,17 @@ export PATH
 export LSOPTIONS='--color'
 export CLICOLOR=1
 export LESS='GeFRX'
+
+# source homebrew site functions
+if [ -d /opt/homebrew/share/zsh/site-functions ]; then
+    export HOMEBREW_PREFIX="/usr/local";
+    export HOMEBREW_CELLAR="/usr/local/Cellar";
+    export HOMEBREW_REPOSITORY="/usr/local/Homebrew";
+    fpath+=("/opt/homebrew/share/zsh/site-functions")
+    eval "$(/usr/bin/env PATH_HELPER_ROOT="/usr/local" /usr/libexec/path_helper -s)"
+    [ -z "${MANPATH-}" ] || export MANPATH=":${MANPATH#:}";
+    export INFOPATH="/usr/local/share/info:${INFOPATH:-}";
+fi
 
 # prompt
 autoload -U promptinit; promptinit

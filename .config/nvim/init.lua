@@ -6,16 +6,13 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- init
-require("config.init")
+require("config")
 
 -- my options
 require("options")
 
 -- colors
 require("colors")
-
--- additional plugin configuration
-require("config")
 
 -- my keymaps
 require("keymaps")

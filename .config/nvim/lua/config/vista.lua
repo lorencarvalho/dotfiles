@@ -1,5 +1,6 @@
 vim.g.vista_renderer_enable_icon = 1
 
+
 -- Use bash from PATH instead of hardcoded version-specific path
 vim.g.vista_ctags_cmd = {
     ['bash'] = 'bash'  -- Will use bash from PATH
