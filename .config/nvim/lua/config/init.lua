@@ -1,5 +1,3 @@
--- Require all other `.lua` files in the same directory
-
 local info = debug.getinfo(1, 'S')
 local module_directory = string.match(info.source, '^@(.*)/')
 local module_filename = string.match(info.source, '/([^/]*)$')
@@ -26,6 +24,11 @@ local config_files = vim.tbl_filter(function(filename)
     local is_this_file = filename == module_filename
     return is_lua_module and not is_this_file
 end, scandir(module_directory))
+
+-- Make sure to setup `mapleader` and `maplocalleader` before
+-- loading lazy.nvim so that mappings are correct.
+vim.g.mapleader = ","
+vim.g.maplocalleader = ",,"
 
 -- Load lazy first
 if vim.tbl_contains(config_files, "lazy.lua") then
