@@ -3,7 +3,6 @@ return {
     "Mofiqul/vscode.nvim",             -- vscode colorscheme
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/nvim-cmp",
-    "marko-cerovac/material.nvim",
     "neovim/nvim-lspconfig",
     "nvim-lua/plenary.nvim",           -- lua functions that many plugins use
     "nvim-telescope/telescope.nvim",   -- a highly extendable fuzzy finder over lists
@@ -12,9 +11,6 @@ return {
     "liuchengxu/vista.vim",
     "williamboman/mason-lspconfig.nvim",
     "williamboman/mason.nvim",
-    {   "olimorris/onedarkpro.nvim",
-        priority = 1000, -- Ensure it loads first
-    },
     {
         "nvim-lualine/lualine.nvim",
         dependencies = { 'nvim-tree/nvim-web-devicons' },
