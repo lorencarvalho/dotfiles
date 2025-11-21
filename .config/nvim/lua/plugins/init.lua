@@ -12,6 +12,9 @@ return {
     "liuchengxu/vista.vim",
     "williamboman/mason-lspconfig.nvim",
     "williamboman/mason.nvim",
+    {   "olimorris/onedarkpro.nvim",
+        priority = 1000, -- Ensure it loads first
+    },
     {
         "nvim-lualine/lualine.nvim",
         dependencies = { 'nvim-tree/nvim-web-devicons' },

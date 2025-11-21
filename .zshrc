@@ -9,6 +9,9 @@ fi
 bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[F"   end-of-line
 bindkey  "^[[3~"  delete-char
+# ctrl+left ctrl+right to jump words
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;5D' backward-word
 
 # shell options
 setopt auto_cd              # cd by just typing directory name

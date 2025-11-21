@@ -5,6 +5,16 @@ require("nvim-tree").setup({
     disable_netrw = true,
     hijack_netrw = true,
     update_cwd = true,
+    renderer = {
+        icons = {
+            show = {
+                file = false,
+                folder = false,
+                folder_arrow = false,
+                git = false,
+            },
+        },
+    },
 })
 
 local function tab_win_closed(winnr)
