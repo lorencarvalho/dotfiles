@@ -5,6 +5,9 @@ vim.g.mapleader = ","
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- macros
+vim.keymap.set("n", "m", "@q", { noremap = true })
+
 -- init
 require("config")
 

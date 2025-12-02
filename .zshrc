@@ -17,6 +17,7 @@ bindkey '^[[1;5D' backward-word
 setopt auto_cd              # cd by just typing directory name
 setopt correct              # correct minor spelling mistakes in commands
 setopt extended_glob        # add extended globbing
+setopt extended_history
 setopt share_history        # share history between sessions
 setopt append_history       # append the history to HISTFILE instead of overwriting
 setopt hist_ignore_dups     # ignore duplicate commands in history
@@ -73,14 +74,28 @@ fi
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS="--color=bg+:'#2e2e2f'"
 
+HISTDIR="$HOME/.history"
+
+fzf_history_all() {
+  local selected
+  selected=$(
+  rg --no-heading --no-line-number '' "$HISTDIR" |
+    sed 's/.*;//' |
+    awk '!seen[$0]++' |
+    fzf --tac --no-sort --query="$LBUFFER"
+  )
+  [[ -n "$selected" ]] && LBUFFER="$selected"
+  zle redisplay
+}
+
+zle -N fzf_history_all
+bindkey '^R' fzf_history_all
+
 # rust
 [[ -f ~/.cargo/env ]] && source ~/.cargo/env
 
 # rye
 [[ -f ~/.rye/env ]] && source ~/.rye/env
-
-# ssh
-[[ `uname` != 'Darwin' ]] && eval `keychain --eval id_rsa`
 
 # sdkman
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh" && export SDKMAN_DIR="$HOME/.sdkman"
@@ -117,6 +132,9 @@ PATH+=":/usr/local/opt/coreutils/libexec/gnubin"
 PATH+=":/usr/local/opt/coreutils/bin"
 PATH+=":/usr/local/bin"
 PATH+=":$_PATH"
+
+[[ -z $(which newt) ]] && PATH+=":$(newt exec printenv PATH)"
+
 export PATH
 
 # colors
